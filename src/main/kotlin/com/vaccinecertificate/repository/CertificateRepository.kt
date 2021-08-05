@@ -17,4 +17,6 @@ interface CertificateRepository : JpaRepository<CertificateEntity, Int> {
      * @return list of certificates found
      */
     fun findByFirstName(firstName: String): List<CertificateEntity>
+
+    fun findByNationalIdentityNumber(nationalIdentityNumber: String): List<CertificateEntity>
 }

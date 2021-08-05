@@ -15,11 +15,20 @@ class CertificateController(private val certificateService: CertificateService) 
     }
 
     @GetMapping(path = ["/certificates"])
-    fun getCertificates(@RequestParam(required = false) name: String?): List<CertificateDto> {
-        return if (name != null) {
-            certificateService.getByFirstName(name)
-        } else {
-            certificateService.getAllCertificates()
+    fun getCertificates(
+            @RequestParam(required = false) nationalIdentityNumber: String?,
+            @RequestParam(required = false) name: String?
+    ): List<CertificateDto> {
+        return when {
+            nationalIdentityNumber != null -> {
+                certificateService.getByNationalIdentityNumber(nationalIdentityNumber)
+            }
+            name != null -> {
+                certificateService.getByFirstName(name)
+            }
+            else -> {
+                certificateService.getAllCertificates()
+            }
         }
     }
 

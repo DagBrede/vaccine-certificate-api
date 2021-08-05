@@ -9,7 +9,9 @@ import javax.persistence.*
 data class CertificateEntity(@Id @GeneratedValue val id: Int = 0,
                              val firstName: String,
                              val lastName: String,
-                             val isVaccinated: Boolean
+                             val nationalIdentityNumber: String,
+                             @OneToMany(mappedBy = "certificate")
+                             val vaccinations: List<VaccinationEntity>
 
 )
 

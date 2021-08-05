@@ -25,20 +25,24 @@ class CertificateService(private val certificateRepository: CertificateRepositor
         val certificateEntity: CertificateEntity = certificateRepository.findByIdOrNull(id)
             ?: throw CertificateNotFoundException("Certificate with id $id not found")
 
-        return certificateEntity.let(CertificateDtoMapper::from)
+        return CertificateDtoMapper.from(certificateEntity)
     }
 
     /**
      * Gets the certificate with the given name.
      *
-     * @param name name of the certificate to be retrieved
+     * @param firstName name of the certificate to be retrieved
      * @return the certificate with the given name
      * @throws CertificateNotFoundException if no certificate with given name exists
      */
     fun getByFirstName(firstName: String): List<CertificateDto> {
         return certificateRepository.findByFirstName(firstName)
-            .map(CertificateDtoMapper::from)
-            .toList()
+            .map{ CertificateDtoMapper.from(it)}
+    }
+
+    fun getByNationalIdentityNumber(nationalIdentityNumber: String): List<CertificateDto> {
+        return certificateRepository.findByNationalIdentityNumber(nationalIdentityNumber)
+                .map{CertificateDtoMapper.from(it)}
     }
 
     /**
@@ -48,7 +52,7 @@ class CertificateService(private val certificateRepository: CertificateRepositor
      */
     fun getAllCertificates(): List<CertificateDto> {
         return certificateRepository.findAll()
-            .map(CertificateDtoMapper::from)
+            .map { CertificateDtoMapper.from(it) }
             .toList()
     }
 
@@ -63,6 +67,6 @@ class CertificateService(private val certificateRepository: CertificateRepositor
 
         val createdCertificate = certificateRepository.save(certificateEntity)
 
-        return createdCertificate.let(CertificateDtoMapper::from)
+        return CertificateDtoMapper.from(createdCertificate)
     }
 }

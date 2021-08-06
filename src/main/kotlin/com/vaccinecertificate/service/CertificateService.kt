@@ -35,9 +35,16 @@ class CertificateService(private val certificateRepository: CertificateRepositor
      * @return the certificate with the given name
      * @throws CertificateNotFoundException if no certificate with given name exists
      */
-    fun getByFirstName(firstName: String): List<CertificateDto> {
-        return certificateRepository.findByFirstName(firstName)
-            .map{ CertificateDtoMapper.from(it)}
+    fun getByName(name: String): List<CertificateDto> {
+        return certificateRepository.findAll().map{
+            Pair(it,"${it.firstName.toUpperCase()} ${it.lastName.toUpperCase()}")
+        }.filter{
+            it.second.contains(name.toUpperCase());
+        }.map{
+            it.first!!
+        }.map{
+            CertificateDtoMapper.from(it)
+        }
     }
 
     fun getByNationalIdentityNumber(nationalIdentityNumber: String): List<CertificateDto> {

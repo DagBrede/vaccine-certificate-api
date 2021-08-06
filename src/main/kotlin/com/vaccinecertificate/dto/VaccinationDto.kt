@@ -10,6 +10,7 @@ data class VaccinationDto(
         val dose: Int,
         val date: Date,
         val type: String,
+        val vaccinatorIdentificator: String,
         val certificate: CertificateDto?) {
 
     init {

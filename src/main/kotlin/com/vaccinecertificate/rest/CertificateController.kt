@@ -24,7 +24,7 @@ class CertificateController(private val certificateService: CertificateService) 
                 certificateService.getByNationalIdentityNumber(nationalIdentityNumber)
             }
             name != null -> {
-                certificateService.getByFirstName(name)
+                certificateService.getByName(name)
             }
             else -> {
                 certificateService.getAllCertificates()

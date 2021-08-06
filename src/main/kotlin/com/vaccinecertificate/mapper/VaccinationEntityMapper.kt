@@ -12,6 +12,7 @@ object VaccinationEntityMapper {
                 dose = vaccinationDto.dose,
                 date = vaccinationDto.date,
                 type = vaccinationDto.type,
+                vaccinatorIdentificator = vaccinationDto.vaccinatorIdentificator,
                 certificate = certificateEntity
                         ?: if (vaccinationDto.certificate != null) {
                             CertificateEntityMapper.from(vaccinationDto.certificate)

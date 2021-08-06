@@ -13,6 +13,7 @@ create table vaccination(
     dose int,
     date date,
     type varchar(100),
+    vaccinator_identificator varchar(100),
     CERTIFICATE_ID int not null,
     foreign key (CERTIFICATE_ID) references certificate(id)
 )

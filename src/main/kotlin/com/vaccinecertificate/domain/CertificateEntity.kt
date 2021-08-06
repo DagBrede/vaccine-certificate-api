@@ -13,5 +13,9 @@ data class CertificateEntity(@Id @GeneratedValue val id: Int = 0,
                              @OneToMany(mappedBy = "certificate")
                              val vaccinations: List<VaccinationEntity>
 
-)
+){
+    override fun toString(): String {
+        return "firstName: $firstName, lastName: $lastName, nationalIdentityNumber: $nationalIdentityNumber, vaccinations:  ${vaccinations.map{it.toString()}} "
+    }
+}
 

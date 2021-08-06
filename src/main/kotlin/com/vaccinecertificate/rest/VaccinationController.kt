@@ -7,7 +7,7 @@ import com.vaccinecertificate.service.VaccinationService
 import org.springframework.web.bind.annotation.*
 
 /**
- * Controller that handles REST requests regarding certificates.
+ * Controller that handles REST requests regarding vaccinations.
  */
 @RestController
 class VaccinationController(private val vaccinationService: VaccinationService) {
